@@ -2,13 +2,10 @@ server:
   port: 8086
 
 spring:
-  application:
-    name: invoice-service
-
   datasource:
     url: jdbc:mysql://localhost:3306/microservices_db
     username: root
-    password: root
+    password: Abhinash@1234
 
   jpa:
     hibernate:
