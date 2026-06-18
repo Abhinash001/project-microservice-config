@@ -2,9 +2,13 @@ server:
   port: 8080
 
 spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
   cloud:
     gateway:
-
       mvc:
         routes:
 
