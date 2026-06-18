@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+
+      mvc:
+        routes:
+
+          - id: product-service
+            uri: lb://PROJECT-PRODUCT-SERVICE
+            predicates:
+              - Path=/products/**
+
+          - id: cart-service
+            uri: lb://PROJECT-CART-SERVICE
+            predicates:
+              - Path=/cart/**
+
+          - id: order-service
+            uri: lb://PROJECT-ORDER-SERVICE
+            predicates:
+              - Path=/orders/**
+
+          - id: payment-service
+            uri: lb://PROJECT-PAYMENT-SERVICE
+            predicates:
+              - Path=/payment/**
+
+          - id: delivery-service
+            uri: lb://PROJECT-DELIVERY-SERVICE
+            predicates:
+              - Path=/delivery/**
+
+          - id: pickup-service
+            uri: lb://PROJECT-PICKUP-SERVICE
+            predicates:
+              - Path=/pickup/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
