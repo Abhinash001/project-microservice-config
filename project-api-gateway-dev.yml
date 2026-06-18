@@ -9,43 +9,30 @@ spring:
 
   cloud:
     gateway:
-      routes:
+      server:
+        webflux:
+          routes:
 
-        - id: product-service
-          uri: lb://PROJECT-PRODUCT-SERVICE
-          predicates:
-            - Path=/products/**
-          filters:
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 10
-                key-resolver: "#{@userKeyResolver}"
+            - id: product-service
+              uri: lb://PROJECT-PRODUCT-SERVICE
+              predicates:
+                - Path=/products/**
+              filters:
+                - name: RequestRateLimiter
+                  args:
+                    redis-rate-limiter.replenishRate: 1
+                    redis-rate-limiter.burstCapacity: 1
+                    key-resolver: "#{@userKeyResolver}"
 
-        - id: cart-service
-          uri: lb://PROJECT-CART-SERVICE
-          predicates:
-            - Path=/cart/**
+            - id: cart-service
+              uri: lb://PROJECT-CART-SERVICE
+              predicates:
+                - Path=/cart/**
 
-        - id: order-service
-          uri: lb://PROJECT-ORDER-SERVICE
-          predicates:
-            - Path=/orders/**
-
-        - id: payment-service
-          uri: lb://PROJECT-PAYMENT-SERVICE
-          predicates:
-            - Path=/payment/**
-
-        - id: delivery-service
-          uri: lb://PROJECT-DELIVERY-SERVICE
-          predicates:
-            - Path=/delivery/**
-
-        - id: pickup-service
-          uri: lb://PROJECT-PICKUP-SERVICE
-          predicates:
-            - Path=/pickup/**
+            - id: order-service
+              uri: lb://PROJECT-ORDER-SERVICE
+              predicates:
+                - Path=/orders/**
 
 eureka:
   client:
