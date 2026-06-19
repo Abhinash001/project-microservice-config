@@ -36,6 +36,8 @@ resilience4j:
     instances:
       productServiceCB:
         slidingWindowSize: 5
+        minimumNumberOfCalls: 3
         failureRateThreshold: 50
         waitDurationInOpenState: 10s
         permittedNumberOfCallsInHalfOpenState: 2
+        automaticTransitionFromOpenToHalfOpenEnabled: true
